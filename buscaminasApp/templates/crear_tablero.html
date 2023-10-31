@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tablero de Buscaminas</title>
+    <style>
+        *{
+           font-family: sans-serif;
+        }
+        h1{
+            color: cornflowerblue
+        }
+    </style>
+</head>
+<body>
+    <h1>Crear Tablero de Buscaminas</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Crear Tablero">
+    </form>
+    <p><br></p>
+    
+    {% if tablero %}
+    <table border="1">
+        {% for row in tablero %}
+        <tr>
+            {% for cell in row %}
+            <td style="width: 30px; height: 30px;">{{ cell }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
