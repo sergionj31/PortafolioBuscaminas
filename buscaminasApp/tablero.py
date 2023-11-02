@@ -1,2 +1,0 @@
-#OBJETO DEL PUNTO 4#
-
