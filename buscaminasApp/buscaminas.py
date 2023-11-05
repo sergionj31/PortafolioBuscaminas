@@ -1,25 +1,46 @@
 from .forms import TableroForm
+import random
 
-class tablero:
-    num_filas = 0
-    num_columnas = 0
-    num_minas = 0
+class Casilla:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.tiene_mina = False
+        self.minas_adyacentes = 0
 
-def __init__(self, num_filas, num_columnas, num_minas):
-    self.num_filas = num_filas
-    self.num_columnas = num_columnas
-    self.num_minas = num_minas
+class Tablero:
+    def __init__(self, filas, columnas, minas):
+        self.filas = filas
+        self.columnas = columnas
+        self.minas = minas
+        self.casillas = [[Casilla(x, y) for y in range(columnas)] for x in range(filas)]
+        self.colocar_minas()
+        self.actualizar_minas_adyacentes(filas, columnas)
 
-def 
+    def colocar_minas(self):
+        minas_colocadas = 0
+        while minas_colocadas < self.minas:
+            x, y = random.randint(0, self.filas - 1), random.randint(0, self.columnas - 1)
+            if not self.casillas[x][y].tiene_mina:
+                self.casillas[x][y].tiene_mina = True
+                minas_colocadas += 1
+                self.actualizar_minas_adyacentes(x, y)
 
-class casilla:
-    fila = 0
-    columna = 0
-    es_mina = False
-    adyacentes = 0
+    def actualizar_minas_adyacentes(self, x, y):
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                nueva_x, nueva_y = x + i, y + j
+                if 0 <= nueva_x < self.filas and 0 <= nueva_y < self.columnas:
+                    self.casillas[nueva_x][nueva_y].minas_adyacentes += 1
 
-def __init__(self, fila, columna, es_mina, adyacente):
-    self.fila = fila
-    self.columna = columna
-    self.es_mina = es_mina
-    self.adyacente = adyacente
+    def mostrar_tablero(self):
+        for fila in self.casillas:
+            for casilla in fila:
+                if casilla.tiene_mina:
+                    print("X", end=" ")
+                else:
+                    print(casilla.minas_adyacentes, end=" ")
+            print()
+
+
+        
