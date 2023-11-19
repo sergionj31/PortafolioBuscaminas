@@ -5,8 +5,13 @@
             *{
                 font-family: sans-serif;
             }
-            h1{
-                color: cornflowerblue
+            .cabecera{
+                background-color: deepskyblue;
+                padding: 20px;
+                color: white;
+            }
+            .cuerpo{
+                margin: 30px;
             }
             a{
                 text-decoration-color: cornflowerblue ;
@@ -14,8 +19,10 @@
         </style>
     </head>
     <body>
-        <h1>Index</h1>
-        <h3>Para crear el tablero pulsa en el siguiente enlace:</h3>
-        <h3><a href="{% url 'crear_tablero' %}">👉CREAR TABLERO👈</a></h3>
+        <div class="cabecera"><h1>Bienvenido!</h1><h5>Created by Sergio Navarro</h5></div>
+        <div class="cuerpo">
+            <h4>Para crear el tablero de buscaminas pulsa en el siguiente enlace:</h4>
+            <h4><a href="{% url 'crear_tablero' %}">👉CREAR TABLERO👈</a></h4>
+        </div>
     </body>
 </html>
