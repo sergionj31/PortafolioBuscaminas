@@ -9,23 +9,41 @@
         h1 {
             color: cornflowerblue;
         }
+        table, td{
+            text-align: center;
+            border: black solid 1px;
+            border-collapse: collapse;
+        }
+        td:hover{
+            cursor: pointer;
+            background-color: lightgray;
+        }
     </style>
 </head>
 <body>
     <h1>Tablero de Buscaminas</h1>
-    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Crear Tablero">
+    </form>
+
+    <p><br></p>
+
     {% if tablero %}
-    <table border="1">
+    <table>
         {% for fila in tablero.casillas %}
         <tr>
             {% for casilla in fila %}
-                <td style="width: 30px; height: 30px;">
-                    {% if casilla.tiene_mina %}
-                        X
+                {% if casilla.tiene_mina %}
+                    <td style="width: 50px; height: 50px">X</td>
+                {% else %}
+                    {% if casilla.minas_adyacentes == 0 %}
+                        <td style="width: 50px; height: 50px"></td>
                     {% else %}
-                        {{ casilla.minas_adyacentes }}
+                        <td style="width: 50px; height: 50px">{{ casilla.minas_adyacentes }}</td>
                     {% endif %}
-                </td>
+                {% endif %}
             {% endfor %}
         </tr>
         {% endfor %}

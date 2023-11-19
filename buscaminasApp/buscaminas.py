@@ -32,15 +32,3 @@ class Tablero:
                 nueva_x, nueva_y = x + i, y + j
                 if 0 <= nueva_x < self.filas and 0 <= nueva_y < self.columnas:
                     self.casillas[nueva_x][nueva_y].minas_adyacentes += 1
-
-    def mostrar_tablero(self):
-        for fila in self.casillas:
-            for casilla in fila:
-                if casilla.tiene_mina:
-                    print("X", end=" ")
-                else:
-                    print(casilla.minas_adyacentes, end=" ")
-            print()
-
-
-        
